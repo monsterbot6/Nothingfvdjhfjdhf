@@ -4,6 +4,21 @@ const client = new Discord.Client();
   var prefix = "$";
 
 
+client.on("message", message => {//bc1
+
+  if (message.content.startsWith("$bc")) {
+  if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' '); 
+  message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
+ m.send(${argresult}\n ${m}\n By Server : ${message.guild.name});
+})
+ message.channel.send(\${message.guild.members.filter(m => m.presence.status !== 'all').size}` : عدد الاعضاء المستلمين`); 
+ message.delete(); 
+};
+});
+
+
  client.on("message", message => {
               var args = message.content.substring(prefix.length).split("$");
               if (message.content.startsWith(prefix + "clear")) {
